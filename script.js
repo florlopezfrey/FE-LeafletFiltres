@@ -79,8 +79,6 @@ function render_to_map(data_markers,filter){
 	markers.clearLayers();
 
 	if (filter == 'all') {
-		console.log('all');
-
 		for (let i = 0; i < data_markers.length; i++) {
 			// agrego todos los markers en la visualizacion inicial
 			let title = data_markers[i].name;
@@ -95,7 +93,6 @@ function render_to_map(data_markers,filter){
 		
 		data_markers.forEach(function (restaurante) {
 			if ((restaurante.kind_food).includes(filter)) {
-				console.log('vivamx');
 				let title = restaurante.name;
 				let address = restaurante.address;
 				var marker = L.marker(new L.LatLng(restaurante.lat, restaurante.lng));
