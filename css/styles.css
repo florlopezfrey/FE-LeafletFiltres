@@ -1,0 +1,7 @@
+body, html {margin: 0; padding: 0; font-family: 'Baloo Thambi 2', cursive; text-align: center; background-color: #FFDFD3; font-size: 17px;}
+.top{padding-top: 5px; color: #71578b;}
+h3 {font-weight: 600; line-height: 1em;}
+
+#mapid { height: 80%; border-top: 4px solid #71578b; border-bottom: 4px solid #71578b;}
+
+#kind_food_selector {background-color: #FFDFD3; color: #71578b; font-size: 14px;}
