@@ -78,29 +78,24 @@ function render_to_map(data_markers,filter){
 	markers.remove();
 	markers.clearLayers();
 
-	if (filter == 'all') {
-		for (let i = 0; i < data_markers.length; i++) {
-			// agrego todos los markers en la visualizacion inicial
-			let title = data_markers[i].name;
-			let address = data_markers[i].address;
-			var marker = L.marker(new L.LatLng(data_markers[i].lat, data_markers[i].lng));	// , { title: title }).addTo(map);
-			marker.bindPopup(title+"<br/>"+address);
+	data_markers.forEach(function (restaurante) {
+		var titleRestaurant = restaurante.name;
+		var addressRestaurant = restaurante.address;
+		
+		if (filter == 'all') {
+			var marker = L.marker(new L.LatLng(restaurante.lat, restaurante.lng));	// , { title: title }).addTo(map);
+			marker.bindPopup(titleRestaurant+"<br/>"+addressRestaurant);
 			markers.addLayer(marker);
 			map.addLayer(markers);
-		}
-		
-	} else {
-		
-		data_markers.forEach(function (restaurante) {
+			
+		} else {
 			if ((restaurante.kind_food).includes(filter)) {
-				let title = restaurante.name;
-				let address = restaurante.address;
 				var marker = L.marker(new L.LatLng(restaurante.lat, restaurante.lng));
-				marker.bindPopup("<b>Este es uno de los restaurantes con comida "+filter+":</b><br>"+title+"<br/>"+address);
+				marker.bindPopup("<b>Este es uno de los restaurantes con comida "+filter+":</b><br>"+titleRestaurant+"<br/>"+addressRestaurant);
 				markers.addLayer(marker);
 				map.addLayer(markers);
 			}
-		  }); 	
-	}
+		}
+	});
 			
 }
