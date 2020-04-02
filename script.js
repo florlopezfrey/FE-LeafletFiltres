@@ -80,21 +80,29 @@ function render_to_map(data_markers,filter){
 	data_markers.forEach(function (restaurante) {
 		var titleRestaurant = restaurante.name;
 		var addressRestaurant = restaurante.address;
-
+		
 		if ( ((restaurante.kind_food).includes(filter)) || filter == 'all') {
 			var marker = L.marker(new L.LatLng(restaurante.lat, restaurante.lng));	// , { title: title }).addTo(map);
 			marker.bindPopup(cartelito(filter));
 			markers.addLayer(marker);
 			map.addLayer(markers);
 		}
+
+		function cartelito(filter) {
+			var titleRestaurant = restaurante.name;
+			var addressRestaurant = restaurante.address;
+		
+			if (filter == 'all') {
+				return titleRestaurant+"<br/>"+addressRestaurant;
+			} else {
+				return "<b>Este es uno de los restaurantes con comida "+filter+":</b><br>"+titleRestaurant+"<br/>"+addressRestaurant;
+			}
+		};
+		
 	});
+
+	
 			
 }
 
-function cartelito(filter) {
-	if (filter == 'all') {
-		return titleRestaurant+"<br/>"+addressRestaurant;
-	} else {
-		return "<b>Este es uno de los restaurantes con comida "+filter+":</b><br>"+titleRestaurant+"<br/>"+addressRestaurant;
-	}
-}
+
