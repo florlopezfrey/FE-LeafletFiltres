@@ -78,17 +78,14 @@ function render_to_map(data_markers,filter){
 	markers.clearLayers();
 
 	data_markers.forEach(function (restaurante) {
-		var titleRestaurant = restaurante.name;
-		var addressRestaurant = restaurante.address;
-		
 		if ( ((restaurante.kind_food).includes(filter)) || filter == 'all') {
 			var marker = L.marker(new L.LatLng(restaurante.lat, restaurante.lng));	// , { title: title }).addTo(map);
-			marker.bindPopup(cartelito(filter));
+			marker.bindPopup(popup(filter));
 			markers.addLayer(marker);
 			map.addLayer(markers);
 		}
 
-		function cartelito(filter) {
+		function popup(filter) {
 			var titleRestaurant = restaurante.name;
 			var addressRestaurant = restaurante.address;
 		
@@ -98,7 +95,7 @@ function render_to_map(data_markers,filter){
 				return "<b>Este es uno de los restaurantes con comida "+filter+":</b><br>"+titleRestaurant+"<br/>"+addressRestaurant;
 			}
 		};
-		
+
 	});
 
 	
